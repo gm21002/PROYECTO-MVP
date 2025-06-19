@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-06-2025 a las 04:50:26
+-- Tiempo de generación: 19-06-2025 a las 02:26:40
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -39,8 +39,6 @@ CREATE TABLE `categorias` (
 INSERT INTO `categorias` (`id`, `nombre`) VALUES
 (5, 'Accesorios'),
 (2, 'Componentes'),
-(11, 'dfaskjdfhkjsdfbjasdkfbnas'),
-(10, 'dsfgdfgdzfgdfg'),
 (1, 'Laptops'),
 (6, 'Monitores'),
 (3, 'Periféricos'),
@@ -73,10 +71,7 @@ INSERT INTO `inventario` (`id`, `producto_id`, `proveedor_id`, `descripcion`, `p
 (3, 3, 1, 'Teclado mecánico switches red, iluminación RGB', 59.99, 60, '2025-06-14'),
 (4, 4, 4, 'Router inalámbrico doble banda, WiFi 6 AX3000', 104.50, 10, '2025-06-14'),
 (5, 5, 5, 'Ratón óptico 16 000 DPI con 8 botones programables', 44.75, 80, '2025-06-14'),
-(6, 6, 6, 'HOLAAAAAAAAAAAA', 20.00, 251, '2025-06-15'),
-(7, 7, 7, 'TEST', 234.00, 23, '2025-06-14'),
-(8, 13, 5, 'dsadasdadada', 15.00, 1000000020, '2025-06-11'),
-(9, 14, 1, 'HOLA', 20.00, 70, '2025-06-12');
+(10, 14, 12, 'Lote de memorias RAM de 32 GB marca Kingston', 40.00, 50, '2025-06-09');
 
 -- --------------------------------------------------------
 
@@ -92,17 +87,6 @@ CREATE TABLE `limites_stock` (
   `stock_maximo` int(11) NOT NULL,
   `creado_en` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `limites_stock`
---
-
-INSERT INTO `limites_stock` (`id`, `producto_id`, `categoria_id`, `stock_minimo`, `stock_maximo`, `creado_en`) VALUES
-(9, 13, NULL, 25, 400, '2025-06-15 06:07:58'),
-(23, 5, NULL, 50, 85, '2025-06-15 07:21:16'),
-(24, 14, NULL, 10, 25, '2025-06-15 07:24:41'),
-(25, 6, 6, 10, 200, '2025-06-16 05:14:41'),
-(27, 4, NULL, 100, 1000, '2025-06-16 19:05:08');
 
 -- --------------------------------------------------------
 
@@ -129,15 +113,13 @@ CREATE TABLE `movimientos` (
 --
 
 INSERT INTO `movimientos` (`id`, `producto_id`, `proveedor_id`, `cantidad`, `tipo`, `fecha`, `usuario_correo`, `descripcion`, `fecha_hora`, `tipo_movimiento`, `usuario_id`) VALUES
-(1, 6, 2, 23, 'entrada', '2025-06-14 09:35:17', 'fernando@gmail.com', NULL, '2025-06-16 12:47:19', 'salida', 0),
-(2, 14, 12, 15, 'entrada', '2025-06-15 07:01:26', 'fernando@gmail.com', NULL, '2025-06-16 12:47:19', 'salida', 0),
-(3, 4, 4, 20, 'salida', '2025-06-16 12:56:50', NULL, 'dfgdfgdfgdgfd', '2025-06-16 12:56:50', 'salida', 1),
-(4, 13, 5, 20, 'entrada', '2025-06-16 20:57:23', 'fernando@gmail.com', NULL, '2025-06-16 12:57:23', 'salida', 0),
-(5, 14, 1, 100, 'entrada', '2025-06-16 20:58:14', 'fernando@gmail.com', NULL, '2025-06-16 12:58:14', 'salida', 0),
-(6, 14, 1, 15, 'salida', '2025-06-16 12:59:23', NULL, 'FDSFSDFSDFSD', '2025-06-16 12:59:23', 'salida', 1),
-(7, 6, 6, 200, 'entrada', '2025-06-17 00:11:09', 'fernando@gmail.com', NULL, '2025-06-16 16:11:09', 'salida', 0),
-(8, 14, 1, 30, 'salida', '2025-06-16 16:59:25', NULL, 'jhguighui', '2025-06-16 16:59:25', 'salida', 1),
-(9, 2, 2, 25, 'salida', '2025-06-16 18:13:39', NULL, 'gdfgfdgdgdgdf', '2025-06-16 18:13:39', 'salida', 1);
+(1, 6, 2, 23, 'entrada', '2025-06-14 09:35:17', 'fernando@gmail.com', 'Ingreso por nueva compra', '2025-06-16 12:47:19', 'salida', 0),
+(2, 14, 12, 15, 'entrada', '2025-06-15 07:01:26', 'fernando@gmail.com', 'Reposición tras alta demanda', '2025-06-16 12:47:19', 'salida', 0),
+(3, 4, 4, 20, 'salida', '2025-06-16 12:56:50', 'fernando@gmail.co', 'Entrega para cliente externo', '2025-06-16 12:56:50', 'salida', 1),
+(4, 13, 5, 20, 'entrada', '2025-06-16 20:57:23', 'fernando@gmail.com', 'Ingreso por nueva compra', '2025-06-16 12:57:23', 'salida', 0),
+(5, 14, 1, 100, 'entrada', '2025-06-16 20:58:14', 'fernando@gmail.com', 'Ingreso por nueva compra', '2025-06-16 12:58:14', 'salida', 0),
+(6, 14, 1, 15, 'salida', '2025-06-16 12:59:23', 'fernando@gmail.co', 'Salida por venta directa', '2025-06-16 12:59:23', 'salida', 1),
+(7, 6, 6, 200, 'entrada', '2025-06-17 00:11:09', 'fernando@gmail.com', 'Ajuste por revisión de stock', '2025-06-16 16:11:09', 'salida', 0);
 
 -- --------------------------------------------------------
 
@@ -163,14 +145,8 @@ INSERT INTO `productos` (`id`, `nombre`, `codigo`, `categoria_id`) VALUES
 (4, 'Router WiFi 6 AX3000', 'PROD-0004', 4),
 (5, 'Mouse Gamer Pro', 'PROD-0005', 5),
 (6, 'Monitor 27\" 4K IPS', 'PROD-0006', 6),
-(7, 'TEST', 'PROD-0007', 7),
-(8, 'dfefwe', 'PROD-5831', 1),
-(9, 'werwerwer', 'PROD-0969', 2),
-(10, 'qweqwreq', 'PROD-2869', 11),
-(11, 'dfserwer', 'PROD-3656', 3),
-(12, 'werwerwe', 'PROD-8899', 11),
-(13, 'dfgdfg', 'PROD-6047', 6),
-(14, 'joel', 'PROD-4257', 2);
+(13, 'Monitor Samsung 32\" 2k IPS', 'PROD-6047', 6),
+(14, 'Memoria RAM 32 GB', 'PROD-4257', 2);
 
 -- --------------------------------------------------------
 
@@ -188,17 +164,13 @@ CREATE TABLE `proveedores` (
 --
 
 INSERT INTO `proveedores` (`id`, `nombre`) VALUES
-(9, 'asdjgshdgasud'),
-(12, 'dfgdfgdfgdfg'),
 (6, 'DisplayTech Ltd'),
-(11, 'eerwer'),
 (5, 'GadgetHub Import'),
+(12, 'GigaNet'),
 (2, 'HardParts Co.'),
-(10, 'jzdfjsdghfjdkbfh'),
 (3, 'LaptopWorld Inc.'),
 (4, 'NetPro Solutions'),
-(1, 'TechSource S.A.'),
-(7, 'TEST');
+(1, 'TechSource S.A.');
 
 -- --------------------------------------------------------
 
@@ -293,7 +265,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `inventario`
 --
 ALTER TABLE `inventario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `limites_stock`
@@ -305,7 +277,7 @@ ALTER TABLE `limites_stock`
 -- AUTO_INCREMENT de la tabla `movimientos`
 --
 ALTER TABLE `movimientos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
